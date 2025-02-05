@@ -3,13 +3,15 @@ import java.util.ArrayList;
 
 public class Player {
 
-    public Player(int money){
-        this.money = money;
-    }
-
+    private String name;
     private int money;
-    private static int totalFields = 15;
+    private int totalFields = 15;
     private static ArrayList<Fields> myFields = new ArrayList<>();
+
+    public Player(int money, String name){
+        this.money = money;
+        this.name = name;
+    }
 
     public static void startFields(){
         for (int i = 0; i < 15; i++) {
@@ -17,19 +19,15 @@ public class Player {
         }
     }
 
-    public static int getTotalFields() {
+    public int getTotalFields() {
         return totalFields;
-    }
-
-    public static void setTotalFields(int totalFields) {
-        Player.totalFields = totalFields;
     }
 
     public int getMoney() {
         return money;
     }
 
-    public void setMoney(int money) {
-        this.money = money;
+    public String getName() {
+        return name;
     }
 }
