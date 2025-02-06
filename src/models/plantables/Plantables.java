@@ -6,14 +6,22 @@ public abstract class Plantables {
     private static int sellValue;
     private static int timeToGrow;
     private static int harvestPrice;
+    private static int inflation = 0;
     private static int qtd;
+    private static int timePlanted;
 
     public Plantables(int buy, int sell, int time, int harvest){
-        this.buyValue = buy;
-        this.sellValue = sell;
-        this.timeToGrow = time;
-        this.harvestPrice = harvest;
+        buyValue = buy;
+        sellValue = sell;
+        timeToGrow = time;
+        harvestPrice = harvest;
     }
+
+//    public static void verifyInflation(){
+//        if(inflation > 0){
+//            sellValue = sellValue - (sellValue*inflation/100);
+//        }
+//    }
 
     public static int getBuyValue() {
         return buyValue;
@@ -41,5 +49,21 @@ public abstract class Plantables {
 
     public static void setQtd(int qtd) {
         Plantables.qtd = qtd;
+    }
+
+    public static int getInflation() {
+        return inflation;
+    }
+
+    public static void setInflation(int inflation) {
+        Plantables.inflation = inflation;
+    }
+
+    public static int getTimePlanted() {
+        return timePlanted;
+    }
+
+    public static void setTimePlanted(int timePlanted) {
+        Plantables.timePlanted = timePlanted;
     }
 }
