@@ -1,41 +1,51 @@
 package models;
 
 import models.plantables.Plantables;
-import models.Player;
 
 public class Fields {
 
-    private static boolean ableToUse = true;
-    private static Plantables item;
-    private static int qtdItem = item.getQtd();
-    private static int roundPlanted = item.getTimePlanted();
+    private boolean ableToUse = true;
+    private Plantables item;
+    private int roundPlanted = -1;
 
     public void receive(Plantables plant){
         if(ableToUse){
-            this.item = plant;
+            item = plant;
+            roundPlanted = Player.getRound();
             ableToUse = false;
         }else{
             System.out.println("This field has already been filled in");
         }
     }
 
-    public static void sellPlants(){
+    public void sellPlants(){
         if(item.getTimeToGrow() >= Player.getRound() - roundPlanted){
-            Player.setMoney(qtdItem*item.getSellValue());
+            Player.setMoney(item.getQtd()*item.getSellValue());
         }
     }
 
     @Override
     public String toString(){
+        if (roundPlanted == -1 || item == null) {
+            return "No plant in this field.\n";
+        }else{
         return String.format("""
-                plant: %s
-                planted time: %d
-                """, item, Player.getRound() - roundPlanted);
+            Plant: %s
+            Planted time: %d
+            """, item, Player.getRound() - roundPlanted);
+        }
     }
 
     public Plantables getItem() {
         return item;
     }
 
+    public boolean getAbleToUse(){
+        return ableToUse;
+    }
+
+    public void setAbleToUse(boolean ans){
+        ableToUse = ans;
+    }
 
 }

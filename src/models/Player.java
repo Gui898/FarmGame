@@ -1,32 +1,31 @@
 package models;
 
-import java.lang.reflect.Field;
-import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Player {
 
-    private String name;
+    private final String name;
     private static int money;
-    private int totalFields = 15;
     private static int round = 1;
-    private ArrayList<Fields> myFields = new ArrayList<>();
+    private Map<Integer, Fields> myFields = new HashMap<>();
 
     public Player(int money, String name){
-        this.money = money;
+        Player.money = money;
         this.name = name;
     }
 
     public void startFields(){
-        for (int i = 0; i < 15; i++) {
-            myFields.add(new Fields());
+        for (int i = 1; i <= 15; i++) {
+            myFields.put(i ,new Fields());
         }
     }
 
     public int getTotalFields() {
-        return totalFields;
+        return myFields().size();
     }
 
-    public int getMoney() {
+    public static int getMoney() {
         return money;
     }
 
@@ -39,14 +38,15 @@ public class Player {
     }
 
     public static void setMoney(int money){
-        Player.money += money;
+        Player.money = money;
     }
 
-    public void setRound(int round) {
+    public static void setRound(int round) {
         Player.round = round;
     }
 
-    public ArrayList<Fields> myFields(){
+    public Map<Integer, Fields> myFields(){
         return myFields;
     }
+
 }

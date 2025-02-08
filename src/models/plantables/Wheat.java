@@ -6,4 +6,8 @@ public class Wheat extends Plantables{
         super(buy, sell, time, harvest);
     }
 
+    @Override
+    public String toString() {
+        return "Wheat";
+    }
 }

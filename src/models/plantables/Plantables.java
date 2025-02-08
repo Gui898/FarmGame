@@ -2,13 +2,12 @@ package models.plantables;
 
 public abstract class Plantables {
 
-    private static int buyValue;
-    private static int sellValue;
-    private static int timeToGrow;
-    private static int harvestPrice;
+    private int buyValue;
+    private int sellValue;
+    private int timeToGrow;
+    private int harvestPrice;
     private static int inflation = 0;
-    private static int qtd;
-    private static int timePlanted;
+    private int qtd = 0;
 
     public Plantables(int buy, int sell, int time, int harvest){
         buyValue = buy;
@@ -23,47 +22,40 @@ public abstract class Plantables {
 //        }
 //    }
 
-    public static int getBuyValue() {
+    public int getBuyValue() {
         return buyValue;
     }
 
-    public static void setBuyValue(int buyValue) {
-        Plantables.buyValue = buyValue;
+    public void setBuyValue(int buyValue) {
+        this.buyValue = buyValue;
     }
 
-    public static int getSellValue() {
+    public int getSellValue() {
         return sellValue;
     }
 
-    public static void setSellValue(int sellValue) {
-        Plantables.sellValue = sellValue;
+    public void setSellValue(int sellValue) {
+        this.sellValue = sellValue;
     }
 
-    public static int getTimeToGrow() {
+    public int getTimeToGrow() {
         return timeToGrow;
     }
 
-    public static int getQtd() {
+    public int getQtd() {
         return qtd;
     }
 
-    public static void setQtd(int qtd) {
-        Plantables.qtd = qtd;
+    public void setQtd(int qtd) {
+        this.qtd = qtd;
     }
 
     public static int getInflation() {
         return inflation;
     }
 
-    public static void setInflation(int inflation) {
+    public void setInflation(int inflation) {
         Plantables.inflation = inflation;
     }
 
-    public static int getTimePlanted() {
-        return timePlanted;
-    }
-
-    public static void setTimePlanted(int timePlanted) {
-        Plantables.timePlanted = timePlanted;
-    }
 }
