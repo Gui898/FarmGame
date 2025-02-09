@@ -1,5 +1,7 @@
 package models;
 
+import models.plantables.Plantables;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -8,7 +10,7 @@ public class Player {
     private final String name;
     private static int money;
     private static int round = 1;
-    private Map<Integer, Fields> myFields = new HashMap<>();
+    private static Map<Integer, Fields> myFields = new HashMap<>();
 
     public Player(int money, String name){
         Player.money = money;
@@ -18,6 +20,15 @@ public class Player {
     public void startFields(){
         for (int i = 1; i <= 15; i++) {
             myFields.put(i ,new Fields());
+        }
+    }
+
+    public void planting(Plantables plant, int key){
+        if(Player.getMoney() >= plant.getBuyValue()){
+            Player.setMoney(Player.getMoney() - plant.getBuyValue());
+            Player.myFields().get(key).receive(plant);
+        }else {
+            System.out.println("You don't have money enough for this");
         }
     }
 
@@ -45,7 +56,7 @@ public class Player {
         Player.round = round;
     }
 
-    public Map<Integer, Fields> myFields(){
+    public static Map<Integer, Fields> myFields(){
         return myFields;
     }
 

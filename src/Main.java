@@ -10,7 +10,6 @@ public class Main {
 
         Scanner scan = new Scanner(System.in);
         Player player = new Player(20000, "Guilherme");
-        int money = Player.getMoney();
         player.startFields();
         Wheat wheatBase = new Wheat(2000,150,3, 500);
         Potato potatoBase = new Potato(1000, 200, 2, 1000);
@@ -20,17 +19,17 @@ public class Main {
 
 
         while(true){
+            int money = Player.getMoney();
             System.out.printf("""
               
                     1- Plant;                       Player: %s
                     2- Harvest;                     Money: $%d
-                    3- Sell;                        Inflation: %d%%
-                    4- Raise 1 field.               Fields: %d
-                    5- Show fields status           Round: %d
+                    3- Sell;                        Fields: %d
+                    4- Raise 1 field;               Round: %d
+                    5- Show fields status.
                     %n""",
                     player.getName(),
                     money,
-                    Plantables.getInflation(),
                     player.getTotalFields(),
                     round);
 
@@ -42,8 +41,8 @@ public class Main {
             switch (answer){
                 case 1:
                     System.out.println("Available fields:");
-                    for(int key : player.myFields().keySet()){
-                        if(player.myFields().get(key).getAbleToUse()){
+                    for(int key : Player.myFields().keySet()){
+                        if(Player.myFields().get(key).getAbleToUse()){
                             System.out.print(key + ", ");
                             availableFields.add(key);
                         }
@@ -65,13 +64,11 @@ public class Main {
                         ansPlant = scan.nextInt();
                         switch (ansPlant){
                             case 1:
-                                Player.setMoney(money - wheatBase.getBuyValue());
-                                player.myFields().get(keyField).receive(wheatBase);
+                                player.planting(wheatBase, keyField);
                                 break;
 
                             case 2:
-                                Player.setMoney(money - potatoBase.getBuyValue());
-                                player.myFields().get(keyField).receive(potatoBase);
+                                player.planting(potatoBase, keyField);
                                 break;
                             default:
                                 break;
@@ -90,7 +87,7 @@ public class Main {
                 case 4:
                     if(money >= 1000){
                         Player.setMoney(money - 1000);
-                        player.myFields().put(player.myFields().size()+1, new Fields());
+                        Player.myFields().put(Player.myFields().size()+1, new Fields());
                         System.out.println("One more field for you!");
                     }else {
                         System.out.println("You don't have money to buy this!");
@@ -98,8 +95,8 @@ public class Main {
                     break;
 
                 case 5:
-                    for(int key : player.myFields().keySet()){
-                        System.out.print(key + " - " + player.myFields().get(key));
+                    for(int key : Player.myFields().keySet()){
+                        System.out.print(key + " - " + Player.myFields().get(key));
                     }
                     break;
                 default:
