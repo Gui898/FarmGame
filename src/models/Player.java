@@ -11,6 +11,8 @@ public class Player {
     private static int money;
     private static int round = 1;
     private static Map<Integer, Fields> myFields = new HashMap<>();
+    private static int qtdWheat = 0;
+    private static int qtdPotato = 0;
 
     public Player(int money, String name){
         Player.money = money;
@@ -24,9 +26,19 @@ public class Player {
     }
 
     public void planting(Plantables plant, int key){
-        if(Player.getMoney() >= plant.getBuyValue()){
+        if(money >= plant.getBuyValue()){
             Player.setMoney(Player.getMoney() - plant.getBuyValue());
             Player.myFields().get(key).receive(plant);
+        }else {
+            System.out.println("You don't have money enough for this");
+        }
+    }
+
+    public void harvesting(Plantables plant, int key){
+        if(money >= plant.getHarvestPrice()){
+            Player.setMoney(Player.getMoney() - plant.getHarvestPrice());
+
+            Player.myFields.get(key).remove();
         }else {
             System.out.println("You don't have money enough for this");
         }
@@ -60,4 +72,19 @@ public class Player {
         return myFields;
     }
 
+    public int getQtdWheat() {
+        return qtdWheat;
+    }
+
+    public static void setQtdWheat(int qtdWheat){
+        Player.qtdWheat += qtdWheat;
+    }
+
+    public int getQtdPotato() {
+        return qtdPotato;
+    }
+
+    public static void setQtdPotato(int qtdPotato) {
+        Player.qtdPotato += qtdPotato;
+    }
 }

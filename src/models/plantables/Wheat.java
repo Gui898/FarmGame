@@ -2,9 +2,11 @@ package models.plantables;
 
 public class Wheat extends Plantables{
 
-    public Wheat(int buy, int sell, int time, int harvest){
-        super(buy, sell, time, harvest);
+    public Wheat(){
+        super(2000, 150, 3, 1000, 200);
     }
+
+
 
     @Override
     public String toString() {

@@ -2,8 +2,8 @@ package models.plantables;
 
 public class Potato extends Plantables {
 
-    public Potato(int buy, int sell, int time, int harvest) {
-        super(buy, sell, time, harvest);
+    public Potato() {
+        super(1000, 2000, 2, 1000,150);
     }
 
     @Override
