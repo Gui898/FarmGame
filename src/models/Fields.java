@@ -37,12 +37,6 @@ public class Fields {
         return false;
     }
 
-    public void sellPlants(){
-        if(item.getTimeToGrow() >= Player.getRound() - roundPlanted){
-            Player.setMoney(item.getQtd()*item.getSellValue());
-        }
-    }
-
     @Override
     public String toString(){
         if (roundPlanted == -1 || item == null) {

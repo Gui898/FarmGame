@@ -1,6 +1,8 @@
 package models;
 
 import models.plantables.Plantables;
+import models.plantables.Potato;
+import models.plantables.Wheat;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -10,7 +12,7 @@ public class Player {
     private final String name;
     private static int money;
     private static int round = 1;
-    private static Map<Integer, Fields> myFields = new HashMap<>();
+    private static final Map<Integer, Fields> myFields = new HashMap<>();
     private static int qtdWheat = 0;
     private static int qtdPotato = 0;
 
@@ -41,6 +43,20 @@ public class Player {
             Player.myFields.get(key).remove();
         }else {
             System.out.println("You don't have money enough for this");
+        }
+    }
+
+
+    //ARRUMA AQUI OH IMBECIL (ACHO Q O PROBLEMA TA NA VERIFICAÇÃO DA CLASSE)
+    public void sellPlants(Object plantType, int price){
+        if(plantType.getClass() == Wheat.class){
+            money += qtdWheat*price;
+            System.out.println("+$" + qtdWheat*price);
+            qtdWheat = 0;
+        } else if (plantType.getClass() == Potato.class) {
+            money += qtdPotato*price;
+            System.out.println("+$" + qtdPotato*price);
+            qtdPotato = 0;
         }
     }
 

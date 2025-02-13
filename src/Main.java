@@ -17,10 +17,18 @@ public class Main {
         ArrayList<Integer> availableFieldsToHarvest = new ArrayList<>();
 
         int round = Player.getRound();
-        boolean end = true;
 
-        while(end){
+        while(true){
+
             int money = Player.getMoney();
+
+            if(money < 500){
+                System.out.println("YOU LOST");
+                break;
+            } else if (Player.myFields().size() >= 100) {
+                System.out.println("YOU WON, CONGRATS BRO!!!");
+                break;
+            }
 
             //The menu
             System.out.printf("""
@@ -30,7 +38,7 @@ public class Main {
                     3- Sell;                        Fields: %d
                     4- Raise 1 field;               Round: %d
                     5- Show fields status.          Wheat: %d
-                    6- Exit                         Potato: %d
+                                                    Potato: %d
                     %n""",
                     player.getName(),
                     money,
@@ -45,7 +53,7 @@ public class Main {
             int ansField;
             boolean thereIs = false;
             int keyField = 0;
-            int indexKey = 0;
+            int indexKey;
 
             switch (answer){
                 case 1:
@@ -105,6 +113,7 @@ public class Main {
                             availableFieldsToHarvest.add(key);
                         }
                     }
+
                     // If it exists, we select and harvest in.
                     if(availableFieldsToHarvest.isEmpty()){
                         System.out.println("There aren't plants to collect");
@@ -121,18 +130,37 @@ public class Main {
                         if(thereIs){
                             if(Player.myFields().get(keyField).getItem() == Wheat.class){
                                 player.harvesting(wheatBase, keyField);
+                                indexKey = availableFieldsToHarvest.indexOf(keyField);
+                                availableFieldsToHarvest.remove(indexKey);
                             }else if(Player.myFields().get(keyField).getItem() == Potato.class){
                                 player.harvesting(potatoBase, keyField);
+                                indexKey = availableFieldsToHarvest.indexOf(keyField);
+                                availableFieldsToHarvest.remove(indexKey);
                             }
                         }else{
                             System.out.println("You can't harvest here!");
                         }
                     }
-
-
                     break;
 
                 case 3:
+                    System.out.println("Which plant do you wanna sell?");
+                    System.out.println("1- Wheat | 2- Potato");
+                    ansPlant = scan.nextInt();
+                    if(ansPlant < 0 || ansPlant > 2){
+                        System.out.println("Enter a valid number");
+                        ansPlant = scan.nextInt();
+                    }
+                    switch (ansPlant){
+                        case 1:
+                            player.sellPlants(wheatBase, wheatBase.getSellValue());
+                            break;
+                        case 2:
+                            player.sellPlants(potatoBase, potatoBase.getSellValue());
+                            break;
+                        default:
+                            break;
+                    }
                     break;
 
                 case 4:
@@ -150,9 +178,6 @@ public class Main {
                         System.out.print(key + " - " + Player.myFields().get(key));
                     }
                     break;
-                case 6:
-                    end = false;
-                    break;
                 default:
                     break;
             }
@@ -161,6 +186,7 @@ public class Main {
                 round++;
                 Player.setRound(round);
             }
+
         }
 
 

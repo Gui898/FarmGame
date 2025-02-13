@@ -1,15 +1,13 @@
 package models.plantables;
 
-import models.Player;
-
 public abstract class Plantables {
 
     private int buyValue;
     private int sellValue;
-    private int timeToGrow;
-    private int harvestPrice;
-    private static int inflation = 0;
-    private int qtd = 0;
+    private final int timeToGrow;
+    private final int harvestPrice;
+    //private static int inflation = 0;
+    private final int qtd;
 
     public Plantables(int buy, int sell, int time, int harvest, int qtdItem){
         buyValue = buy;

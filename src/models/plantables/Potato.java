@@ -3,7 +3,7 @@ package models.plantables;
 public class Potato extends Plantables {
 
     public Potato() {
-        super(1000, 2000, 2, 1000,150);
+        super(1000, 70, 2, 1000,150);
     }
 
     @Override
