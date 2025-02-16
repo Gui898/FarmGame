@@ -165,7 +165,7 @@ public class Main {
 
                 case 4:
                     if(money >= 1000){
-                        Player.setMoney(money - 1000);
+                        player.loseMoney(1000);
                         Player.myFields().put(Player.myFields().size()+1, new Fields());
                         System.out.println("One more field for you!");
                     }else {
@@ -185,6 +185,16 @@ public class Main {
             if(answer != 5){
                 round++;
                 Player.setRound(round);
+            }
+
+            if(round %5 == 0 && round %15 != 0){
+                System.out.println("You paid the tax");
+                System.out.println("-$2000");
+                player.loseMoney(2000);
+            } else if (round %15 == 0) {
+                System.out.println("The tornado passed here, you need to reconstruct the plantation");
+                System.out.println("-$10000");
+                player.loseMoney(10000);
             }
 
         }

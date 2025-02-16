@@ -29,7 +29,7 @@ public class Player {
 
     public void planting(Plantables plant, int key){
         if(money >= plant.getBuyValue()){
-            Player.setMoney(Player.getMoney() - plant.getBuyValue());
+            money -= plant.getBuyValue();
             Player.myFields().get(key).receive(plant);
         }else {
             System.out.println("You don't have money enough for this");
@@ -38,7 +38,7 @@ public class Player {
 
     public void harvesting(Plantables plant, int key){
         if(money >= plant.getHarvestPrice()){
-            Player.setMoney(Player.getMoney() - plant.getHarvestPrice());
+            money -= plant.getHarvestPrice();
 
             Player.myFields.get(key).remove();
         }else {
@@ -46,8 +46,6 @@ public class Player {
         }
     }
 
-
-    //ARRUMA AQUI OH IMBECIL (ACHO Q O PROBLEMA TA NA VERIFICAÇÃO DA CLASSE)
     public void sellPlants(Object plantType, int price){
         if(plantType.getClass() == Wheat.class){
             money += qtdWheat*price;
@@ -58,6 +56,10 @@ public class Player {
             System.out.println("+$" + qtdPotato*price);
             qtdPotato = 0;
         }
+    }
+
+    public void loseMoney(int value){
+        money -= value;
     }
 
     public int getTotalFields() {
@@ -74,10 +76,6 @@ public class Player {
 
     public static int getRound() {
         return round;
-    }
-
-    public static void setMoney(int money){
-        Player.money = money;
     }
 
     public static void setRound(int round) {
@@ -103,4 +101,5 @@ public class Player {
     public static void setQtdPotato(int qtdPotato) {
         Player.qtdPotato += qtdPotato;
     }
+
 }
