@@ -1,8 +1,10 @@
 import models.Fields;
 import models.Player;
+import models.events.Climate;
 import models.plantables.*;
 
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.Scanner;
 
 public class Main {
@@ -19,6 +21,8 @@ public class Main {
         int round = Player.getRound();
 
         while(true){
+
+            Climate.climateEvent(new Random().nextInt(Climate.getMaxValue())+1);
 
             int money = Player.getMoney();
 

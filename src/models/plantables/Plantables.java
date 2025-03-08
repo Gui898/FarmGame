@@ -1,6 +1,6 @@
 package models.plantables;
 
-public abstract class Plantables {
+public abstract sealed class Plantables permits Wheat, Potato {
 
     private int buyValue;
     private int sellValue;

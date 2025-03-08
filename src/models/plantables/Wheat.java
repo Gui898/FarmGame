@@ -1,6 +1,6 @@
 package models.plantables;
 
-public class Wheat extends Plantables{
+public non-sealed class Wheat extends Plantables{
 
     public Wheat(){
         super(2000, 50, 3, 1000, 200);
